@@ -338,6 +338,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Featured Client Work Section - Huge Typography Style */}
       <section className="bg-[#E8EAE6] dark:bg-[#111111] text-black dark:text-white px-6 sm:px-12 md:px-20 py-24 sm:py-32 border-t border-black/10 dark:border-white/10 relative z-20">
         <div className="max-w-[1800px] mx-auto flex flex-col">
@@ -401,43 +402,43 @@ export default function Home() {
               className={`sticky top-[10vh] sm:top-[12vh] ${project.zIndex} w-full rounded-[2rem] sm:rounded-[3rem] ${project.bg} text-white p-8 sm:p-12 md:p-16 shadow-[0_-10px_40px_rgba(0,0,0,0.2)] transition-transform duration-500 border border-white/5 flex flex-col xl:flex-row gap-12 xl:gap-24 overflow-hidden`}
               style={{ minHeight: '65vh', maxHeight: '85vh' }}
             >
-              
+
               {/* Content Side */}
               <div className={`flex flex-col justify-between h-full ${project.image ? 'xl:w-1/2' : 'w-full'}`}>
-                 
-                 {/* Title */}
-                 <h3 className={`font-medium tracking-tight leading-[0.95] max-w-5xl ${project.image ? 'text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[7rem]' : 'text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem]'}`}>
-                   {project.title.map((line, i) => (
-                     <div key={i} className={i > 0 ? "text-white/60" : "text-white"}>{line}</div>
-                   ))}
-                 </h3>
 
-                 {/* Bottom Content */}
-                 <div className="flex flex-col gap-6 sm:gap-8 mt-12 sm:mt-auto">
-                   {/* Tags */}
-                   <div className="flex flex-wrap gap-2 sm:gap-3">
-                     {project.tags.map((tag, i) => (
-                       <span key={i} className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-xs sm:text-sm font-medium backdrop-blur-sm transition-colors hover:bg-white/10 hover:text-white cursor-default whitespace-nowrap">
-                         {tag}
-                       </span>
-                     ))}
-                   </div>
+                {/* Title */}
+                <h3 className={`font-medium tracking-tight leading-[0.95] max-w-5xl ${project.image ? 'text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[7rem]' : 'text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem]'}`}>
+                  {project.title.map((line, i) => (
+                    <div key={i} className={i > 0 ? "text-white/60" : "text-white"}>{line}</div>
+                  ))}
+                </h3>
 
-                   {/* Description */}
-                   {project.desc && (
-                     <div className="flex items-start gap-4 sm:gap-5 max-w-3xl">
-                       <div className="mt-1 sm:mt-1.5 flex-shrink-0">
-                         {/* Cool asterisk icon from reference */}
-                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-white/80 w-6 h-6 sm:w-7 sm:h-7">
-                           <path d="M12 2v20M17 5l-10 14M22 12H2M19 19L5 5" />
-                         </svg>
-                       </div>
-                       <p className="text-sm sm:text-base md:text-lg font-medium text-white/80 leading-relaxed sm:leading-relaxed">
-                         {project.desc}
-                       </p>
-                     </div>
-                   )}
-                 </div>
+                {/* Bottom Content */}
+                <div className="flex flex-col gap-6 sm:gap-8 mt-12 sm:mt-auto">
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
+                    {project.tags.map((tag, i) => (
+                      <span key={i} className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-xs sm:text-sm font-medium backdrop-blur-sm transition-colors hover:bg-white/10 hover:text-white cursor-default whitespace-nowrap">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Description */}
+                  {project.desc && (
+                    <div className="flex items-start gap-4 sm:gap-5 max-w-3xl">
+                      <div className="mt-1 sm:mt-1.5 flex-shrink-0">
+                        {/* Cool asterisk icon from reference */}
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-white/80 w-6 h-6 sm:w-7 sm:h-7">
+                          <path d="M12 2v20M17 5l-10 14M22 12H2M19 19L5 5" />
+                        </svg>
+                      </div>
+                      <p className="text-sm sm:text-base md:text-lg font-medium text-white/80 leading-relaxed sm:leading-relaxed">
+                        {project.desc}
+                      </p>
+                    </div>
+                  )}
+                </div>
 
               </div>
 
@@ -449,6 +450,60 @@ export default function Home() {
               )}
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Project Leadership Highlight Section - Minimal Text & Pills Style */}
+      <section className="bg-[#E8EAE6] dark:bg-[#111111] px-4 sm:px-8 md:px-16 py-24 sm:py-32 relative z-20 border-t border-black/10 dark:border-white/10 flex flex-col items-center justify-center text-center">
+        <div className="max-w-[1200px] mx-auto w-full">
+
+          {/* Subtitle */}
+          <h4 className="text-sm font-semibold tracking-widest uppercase text-neutral-500 mb-8 sm:mb-12 flex items-center justify-center gap-3">
+            <span className="w-8 h-[1px] bg-neutral-300 dark:bg-neutral-700" />
+            Réveil Fragrances — Lead Developer
+            <span className="w-8 h-[1px] bg-neutral-300 dark:bg-neutral-700" />
+          </h4>
+
+          {/* Large Hero Text */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-medium tracking-tight text-black dark:text-white leading-[1.1] mb-12 sm:mb-16">
+            Architecting a dependable premium storefront that connects customers with luxury fragrances, ensuring seamless checkout and high-uptime reliable operations.
+          </h2>
+
+          {/* Premium Pill Tags */}
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+
+            {/* Pill 1 */}
+            <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/10 dark:border-white/10 bg-white/50 dark:bg-[#1a1a1a]/50 hover:bg-white dark:hover:bg-[#222] transition-colors cursor-default">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600 dark:text-neutral-400"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              <span className="text-sm sm:text-base font-medium text-black dark:text-white">Full-Stack Next.js</span>
+            </div>
+
+            {/* Pill 2 */}
+            <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/10 dark:border-white/10 bg-white/50 dark:bg-[#1a1a1a]/50 hover:bg-white dark:hover:bg-[#222] transition-colors cursor-default">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600 dark:text-neutral-400"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              <span className="text-sm sm:text-base font-medium text-black dark:text-white">Sub-200ms APIs</span>
+            </div>
+
+            {/* Pill 3 */}
+            <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/10 dark:border-white/10 bg-white/50 dark:bg-[#1a1a1a]/50 hover:bg-white dark:hover:bg-[#222] transition-colors cursor-default">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600 dark:text-neutral-400"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+              <span className="text-sm sm:text-base font-medium text-black dark:text-white">Live Inventory</span>
+            </div>
+
+            {/* Pill 4 */}
+            <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/10 dark:border-white/10 bg-white/50 dark:bg-[#1a1a1a]/50 hover:bg-white dark:hover:bg-[#222] transition-colors cursor-default">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600 dark:text-neutral-400"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span className="text-sm sm:text-base font-medium text-black dark:text-white">Secure Payments</span>
+            </div>
+
+            {/* Pill 5 */}
+            <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/10 dark:border-white/10 bg-white/50 dark:bg-[#1a1a1a]/50 hover:bg-white dark:hover:bg-[#222] transition-colors cursor-default">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600 dark:text-neutral-400"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              <span className="text-sm sm:text-base font-medium text-black dark:text-white">Premium Markets</span>
+            </div>
+
+          </div>
+
         </div>
       </section>
 
@@ -556,6 +611,290 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Triumphs Section - Clean Minimalist Table Layout */}
+      <section className="bg-[#f3f3f3] dark:bg-[#0a0a0a] py-16 sm:py-20 px-6 sm:px-12 md:px-20 relative z-20 border-t border-black/10 dark:border-white/10">
+        <div className="max-w-[1000px] mx-auto">
+
+          {/* Section Header */}
+          <div className="mb-12 md:mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tighter text-black dark:text-white leading-none"
+            >
+              Triumphs
+            </motion.h2>
+          </div>
+
+          {/* Table Container */}
+          <div className="w-full">
+
+            {/* Table Header - Hidden on mobile */}
+            <div className="hidden md:grid grid-cols-12 gap-4 sm:gap-6 pb-3 border-b border-black/20 dark:border-white/20 mb-4">
+              <div className="col-span-5">
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-neutral-500 font-medium">Role & Organization</span>
+              </div>
+              <div className="col-span-3">
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-neutral-500 font-medium">Key Highlights</span>
+              </div>
+              <div className="col-span-4">
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-neutral-500 font-medium">Details</span>
+              </div>
+            </div>
+
+            {/* Row 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+              className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 py-6 sm:py-8 border-b border-black/10 dark:border-white/10 group"
+            >
+              <div className="md:col-span-5 flex flex-col justify-start">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-medium tracking-tight text-black dark:text-white leading-[1.1] mb-1.5 group-hover:text-neutral-500 transition-colors duration-300">
+                  Freelance Developer
+                </h3>
+                <span className="text-xs sm:text-sm text-neutral-500 font-medium">@WebCros</span>
+              </div>
+              <div className="md:col-span-3 flex flex-col gap-1.5">
+                <span className="text-[10px] sm:text-xs font-medium text-black dark:text-white/80">Worked on real client projects</span>
+                <span className="text-[10px] sm:text-xs font-medium text-black dark:text-white/80">Global business websites</span>
+                <span className="text-[10px] sm:text-xs font-medium text-black dark:text-white/80">Delivered production-ready solutions</span>
+              </div>
+              <div className="md:col-span-4 flex flex-col justify-start">
+                <p className="text-[10px] sm:text-xs font-medium text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  Building and delivering scalable web solutions and premium digital experiences for clients worldwide. Focusing on modern architectures and highly optimized deployments.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Row 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+              className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 py-6 sm:py-8 border-b border-black/10 dark:border-white/10 group"
+            >
+              <div className="md:col-span-5 flex flex-col justify-start">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-medium tracking-tight text-black dark:text-white leading-[1.1] mb-1.5 group-hover:text-neutral-500 transition-colors duration-300">
+                  DevOps & Python<br />Enthusiast
+                </h3>
+                <span className="text-xs sm:text-sm text-neutral-500 font-medium">@Wipro</span>
+              </div>
+              <div className="md:col-span-3 flex flex-col gap-1.5">
+                <span className="text-[10px] sm:text-xs font-medium text-black dark:text-white/80">AWS & Docker</span>
+                <span className="text-[10px] sm:text-xs font-medium text-black dark:text-white/80">Kubernetes & Jenkins</span>
+                <span className="text-[10px] sm:text-xs font-medium text-black dark:text-white/80">Linux OS</span>
+                <span className="text-[10px] sm:text-xs font-medium text-black dark:text-white/80">CI/CD Pipelines</span>
+              </div>
+              <div className="md:col-span-4 flex flex-col justify-start">
+                <p className="text-[10px] sm:text-xs font-medium text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  Comprehensive training and hands-on experience in cloud infrastructure, containerization, and continuous integration/deployment automation.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Row 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
+              className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 py-6 sm:py-8 border-b border-black/10 dark:border-white/10 group"
+            >
+              <div className="md:col-span-5 flex flex-col justify-start">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-medium tracking-tight text-black dark:text-white leading-[1.1] mb-1.5 group-hover:text-neutral-500 transition-colors duration-300">
+                  COE Graduate
+                </h3>
+                <span className="text-xs sm:text-sm text-neutral-500 font-medium">@Tech Mahindra</span>
+              </div>
+              <div className="md:col-span-3 flex flex-col gap-1.5">
+                <span className="text-[10px] sm:text-xs font-medium text-black dark:text-white/80">Enterprise software</span>
+                <span className="text-[10px] sm:text-xs font-medium text-black dark:text-white/80">Development training</span>
+                <span className="text-[10px] sm:text-xs font-medium text-black dark:text-white/80">Industry-focused learning</span>
+              </div>
+              <div className="md:col-span-4 flex flex-col justify-start">
+                <p className="text-[10px] sm:text-xs font-medium text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  Intensive training program focused on enterprise-level software engineering practices, industry standards, and professional development.
+                </p>
+              </div>
+            </motion.div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* Connect with WebCros Section */}
+      <section className="bg-[#f2efe9] dark:bg-[#0a0a0a] py-16 sm:py-24 px-6 sm:px-12 md:px-20 relative z-20 border-t border-black/10 dark:border-white/10 overflow-hidden">
+
+        {/* Leaf Shadow Background */}
+        <div
+          className="absolute inset-0 z-0 pointer-events-none opacity-30 mix-blend-multiply dark:mix-blend-soft-light dark:opacity-10"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1590082871875-0640ee071d87?q=80&w=2000&auto=format&fit=crop')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center relative z-10">
+
+          {/* Left: Huge Text */}
+          <div className="pr-0 lg:pr-8">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-black dark:text-white leading-[1.05]"
+            >
+              Made to<br />last,<br />designed to<br />endure.
+            </motion.h2>
+          </div>
+
+          {/* Right: Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+            className="max-w-lg lg:ml-auto w-full"
+          >
+            <p className="text-base sm:text-lg font-medium text-black dark:text-white mb-6 leading-snug">
+              Connect with WebCros. Reach out to discuss your next big project or partnership.
+            </p>
+
+            <form action="https://formsubmit.co/talaganarajesh@gmail.com" method="POST" className="flex flex-col gap-4">
+              {/* FormSubmit Configurations */}
+              <input type="text" name="_honey" style={{ display: 'none' }} />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="New WebCros Connection Request!" />
+
+              {/* Email Input */}
+              <div className="relative group">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your email *"
+                  required
+                  className="w-full bg-transparent border border-black/20 dark:border-white/20 rounded-full px-5 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-black dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 focus:outline-none focus:border-black dark:focus:border-white transition-colors"
+                />
+                <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 w-8 sm:w-10 h-8 sm:h-10 bg-black dark:bg-white text-white dark:text-black rounded-full flex items-center justify-center hover:scale-105 transition-transform" aria-label="Submit Email">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Consent Checkbox */}
+              <div className="flex items-start gap-2.5 mt-2 px-1">
+                <div className="relative flex items-center justify-center mt-0.5">
+                  <input type="checkbox" required className="w-3.5 h-3.5 rounded-full border border-black/20 dark:border-white/20 appearance-none checked:bg-black dark:checked:bg-white cursor-pointer transition-colors shrink-0" />
+                </div>
+                <p className="text-[10px] sm:text-xs font-medium text-neutral-500 leading-tight">
+                  By submitting your email you agree to connect with the WebCros team and accept our Privacy Policy.
+                </p>
+              </div>
+            </form>
+          </motion.div>
+
+        </div>
+      </section>
+      {/* Final Contact & Footer Section - Premium Dark UI Structure */}
+      <section className="bg-[#111111] dark:bg-[#050505] text-white pt-16 sm:pt-20 pb-8 px-6 sm:px-12 md:px-20 relative z-20 overflow-hidden rounded-t-[3rem] mt-12">
+
+        {/* Subtle Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute -top-[20%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-white/5 blur-[120px]" />
+          <div className="absolute bottom-0 left-[10%] w-[40vw] h-[40vw] rounded-full bg-[#E50914]/5 blur-[120px]" />
+        </div>
+
+        <div className="max-w-[1600px] mx-auto relative z-10">
+
+          {/* Grid of Details */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-16 mb-20 sm:mb-32">
+
+            {/* User Details */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+              className="flex flex-col gap-6 lg:max-w-sm"
+            >
+              <h4 className="text-sm font-bold uppercase tracking-widest text-neutral-500">About Me</h4>
+              <p className="text-base sm:text-lg font-medium leading-relaxed text-neutral-300">
+                I'm Nani Reddy, a passionate DevOps engineer and Full-Stack Developer at WebCros.
+                I specialize in robust cloud infrastructure, scalable systems, and elegant Python architectures.
+              </p>
+            </motion.div>
+
+            {/* Socials */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex flex-col gap-6"
+            >
+              <h4 className="text-sm font-bold uppercase tracking-widest text-neutral-500">Socials</h4>
+              <div className="flex flex-col gap-4">
+                {[
+                  { name: "LinkedIn", url: "https://linkedin.com/in/nanireddy" },
+                  { name: "GitHub", url: "https://github.com/nanireddy" },
+                  { name: "Twitter / X", url: "#" }
+                ].map((social, idx) => (
+                  <a key={idx} href={social.url} target="_blank" rel="noopener noreferrer" className="text-lg sm:text-xl font-medium hover:text-neutral-400 transition-colors flex items-center gap-3 group w-fit">
+                    {social.name}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#E50914]"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Navigation */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.15 }}
+              className="flex flex-col gap-6"
+            >
+              <h4 className="text-sm font-bold uppercase tracking-widest text-neutral-500">Navigation</h4>
+              <div className="flex flex-col gap-4">
+                {[
+                  { name: "Home", url: "#" },
+                  { name: "Projects", url: "#" },
+                  { name: "Work", url: "#" },
+                  { name: "Contact", url: "#" }
+                ].map((link, idx) => (
+                  <a key={idx} href={link.url} className="text-lg sm:text-xl font-medium hover:text-neutral-400 transition-colors flex items-center gap-3 group w-fit">
+                    {link.name}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#E50914]"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Direct Contact */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-col gap-6"
+            >
+              <h4 className="text-sm font-bold uppercase tracking-widest text-neutral-500">Get in touch</h4>
+              <a href="mailto:naniatworkmail@gmail.com" className="text-[15px] sm:text-base font-medium tracking-tight hover:text-neutral-400 transition-colors inline-block pb-4 border-b border-white/10 break-all w-fit">
+                naniatworkmail@gmail.com
+              </a>
+              <div className="flex flex-col gap-2 mt-4">
+                <span className="text-sm font-medium text-neutral-400">Based in India.</span>
+                <span className="text-sm font-medium text-neutral-400">Working Worldwide.</span>
+              </div>
+            </motion.div>
+
+          </div>
+
+          {/* Bottom Branding & Copyright */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col items-center border-t border-white/10 pt-8"
+          >
+            <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-6 mt-2">
+              <p className="text-xs sm:text-sm font-medium text-neutral-500 text-center sm:text-left">
+                © {new Date().getFullYear()} Nani Reddy. All rights reserved.
+              </p>
+              <div className="flex items-center gap-6">
+                <span className="text-xs sm:text-sm font-medium text-neutral-500 hover:text-white transition-colors cursor-pointer hidden sm:block">
+                  Privacy Policy
+                </span>
+                <span
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="text-xs sm:text-sm font-bold uppercase tracking-widest text-white hover:text-[#E50914] transition-colors cursor-pointer flex items-center gap-2"
+                >
+                  Back to top <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+      </section>
 
     </main>
   );
