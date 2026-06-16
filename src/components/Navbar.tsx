@@ -52,6 +52,46 @@ const Menu3DBackground = () => {
   );
 };
 
+const HoverLink = ({ item, onClick }: { item: { name: string, href: string }, onClick: () => void }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <Link
+      href={item.href}
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative block overflow-hidden text-4xl sm:text-5xl font-bold tracking-tighter"
+    >
+      <div className="flex">
+        {item.name.split("").map((char: string, i: number) => (
+          <motion.span
+            key={`primary-${i}`}
+            animate={{ y: isHovered ? "-100%" : "0%" }}
+            transition={{ duration: 0.4, delay: i * 0.02, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-block text-[#111111] dark:text-white"
+          >
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+        ))}
+      </div>
+      <div className="absolute inset-0 flex">
+        {item.name.split("").map((char: string, i: number) => (
+          <motion.span
+            key={`secondary-${i}`}
+            initial={{ y: "100%" }}
+            animate={{ y: isHovered ? "0%" : "100%" }}
+            transition={{ duration: 0.4, delay: i * 0.02, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-block text-[#E50914]"
+          >
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+        ))}
+      </div>
+    </Link>
+  );
+};
+
 export default function Navbar() {
   const headerRef = useRef<HTMLElement>(null);
 
@@ -158,18 +198,7 @@ export default function Navbar() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.05 + 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <Link
-                        href={item.href}
-                        onClick={() => setMenuOpen(false)}
-                        onMouseEnter={() => setHoveredItem(item.name)}
-                        onMouseLeave={() => setHoveredItem(null)}
-                        className={`block text-4xl sm:text-5xl font-bold tracking-tighter transition-all duration-300 ${hoveredItem === item.name
-                          ? "text-[#E50914]" // Brand red on hover
-                          : "text-[#111111] dark:text-white" // Default black/white
-                          }`}
-                      >
-                        {item.name}
-                      </Link>
+                      <HoverLink item={item} onClick={() => setMenuOpen(false)} />
                     </motion.div>
                   ))}
                 </div>

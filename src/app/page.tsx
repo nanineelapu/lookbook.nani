@@ -39,6 +39,64 @@ const ServiceRow = ({ item, index }: { item: any, index: number }) => {
   );
 };
 
+const MagneticButton = ({ href, text, isEmail = false }: { href: string, text: string, isEmail?: boolean }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.a
+      href={href}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      whileTap={{ scale: 0.95 }}
+      className="relative flex items-center justify-between gap-4 px-5 py-3 bg-black text-white dark:bg-white dark:text-black rounded-full shadow-xl overflow-hidden cursor-pointer"
+    >
+      <div className={`relative overflow-hidden font-bold ${isEmail ? 'tracking-tight' : 'tracking-widest uppercase'} text-[10px] sm:text-xs z-10`}>
+        <div className="flex">
+          {text.split("").map((char: string, i: number) => (
+            <motion.span
+              key={`primary-${i}`}
+              animate={{ y: isHovered ? "-100%" : "0%" }}
+              transition={{ duration: 0.4, delay: i * 0.015, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-block"
+            >
+              {char === " " ? "\u00A0" : char}
+            </motion.span>
+          ))}
+        </div>
+        <div className="absolute inset-0 flex text-[#E50914]">
+          {text.split("").map((char: string, i: number) => (
+            <motion.span
+              key={`secondary-${i}`}
+              initial={{ y: "100%" }}
+              animate={{ y: isHovered ? "0%" : "100%" }}
+              transition={{ duration: 0.4, delay: i * 0.015, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-block"
+            >
+              {char === " " ? "\u00A0" : char}
+            </motion.span>
+          ))}
+        </div>
+      </div>
+      
+      <div className="relative p-1.5 rounded-full z-10 overflow-hidden bg-white text-black dark:bg-black dark:text-white">
+        <motion.div
+          animate={{ x: isHovered ? "150%" : 0, y: isHovered ? "-150%" : 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <ArrowUpRight className="w-3.5 h-3.5" />
+        </motion.div>
+        <motion.div
+          className="absolute inset-0 p-1.5 text-[#E50914]"
+          animate={{ x: isHovered ? 0 : "-150%", y: isHovered ? 0 : "150%" }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <ArrowUpRight className="w-3.5 h-3.5" />
+        </motion.div>
+      </div>
+    </motion.a>
+  );
+};
+
 export default function Home() {
 
   const row1Skills = [
@@ -127,7 +185,7 @@ export default function Home() {
 
         {/* Main Massive Title */}
         <div className="flex flex-col gap-0 mb-16 md:mb-24 relative z-10">
-          <div className="overflow-hidden flex">
+          <div className="overflow-hidden flex pr-2 md:pr-4">
             {"NANI".split("").map((char, i) => (
               <motion.span
                 key={`nani-${i}`}
@@ -141,7 +199,7 @@ export default function Home() {
             ))}
           </div>
           <div className="overflow-hidden flex flex-col items-start">
-            <div className="flex overflow-hidden">
+            <div className="flex overflow-hidden pr-2 md:pr-4">
               {"REDDY".split("").map((char, i) => (
                 <motion.span
                   key={`reddy-${i}`}
@@ -172,24 +230,11 @@ export default function Home() {
             transition={{ duration: 1, delay: 1.2, ease: [0.19, 1.0, 0.22, 1.0] }}
             className="flex flex-row flex-wrap gap-4 shrink-0 lg:absolute lg:right-0 lg:bottom-12"
           >
-            {/* Static Let's Connect Button */}
-            <Link
-              href="mailto:naniatworkmail@gmail.com"
-              className="relative flex items-center justify-between gap-4 px-5 py-3 bg-black text-white dark:bg-white dark:text-black rounded-full overflow-hidden shadow-xl"
-            >
-              <span className="relative font-bold tracking-widest uppercase text-[10px] sm:text-xs z-10">Let's Connect</span>
-              <div className="relative bg-white text-black dark:bg-black dark:text-white p-1.5 rounded-full z-10">
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </div>
-            </Link>
+            {/* Animated Let's Connect Button */}
+            <MagneticButton href="mailto:naniatworkmail@gmail.com" text="Let's Connect" />
 
-            {/* Static Email Button */}
-            <Link
-              href="mailto:naniatworkmail@gmail.com"
-              className="flex items-center justify-center gap-2 px-5 py-3 border border-black/20 dark:border-white/20 rounded-full bg-transparent"
-            >
-              <span className="font-bold tracking-tight text-[10px] sm:text-xs text-black dark:text-white">naniatworkmail@gmail.com</span>
-            </Link>
+            {/* Animated Email Button */}
+            <MagneticButton href="mailto:naniatworkmail@gmail.com" text="Connect via Mail" />
           </motion.div>
         </div>
 
@@ -256,54 +301,66 @@ export default function Home() {
           </div>
 
           {/* Right Column (Scrolling Grid) */}
-          <div className="w-full lg:w-2/3 flex flex-col sm:flex-row border-l border-black/10 dark:border-white/10 relative z-10">
+          <div className="w-full lg:w-2/3 flex flex-col sm:flex-row border-l border-black/10 dark:border-white/10 relative z-10" style={{ perspective: "2000px" }}>
 
             {/* Col 1 */}
             <div className="w-full sm:w-1/2 flex flex-col border-r border-black/10 dark:border-white/10">
 
               {/* Card 1 */}
-              <div className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[250px] sm:h-[300px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                <motion.h3
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                  className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter"
-                >
+              <motion.div
+                initial={{ opacity: 0, y: 150, rotateX: -15, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1.2, ease: [0.19, 1.0, 0.22, 1.0] }}
+                className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[250px] sm:h-[300px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-[#111111] transition-colors group cursor-default"
+              >
+                <h3 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter group-hover:scale-105 group-hover:translate-x-2 group-hover:-translate-y-1 transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] origin-left">
                   WebCros
-                </motion.h3>
-                <p className="text-sm sm:text-base font-medium">Freelance Full Stack Developer</p>
-              </div>
+                </h3>
+                <p className="text-sm sm:text-base font-medium transition-colors duration-500 group-hover:text-[#E50914]">Freelance Full Stack Developer</p>
+              </motion.div>
 
               {/* Card 2 */}
-              <div className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[300px] sm:h-[350px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                <motion.h3
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                  className="text-5xl sm:text-6xl lg:text-7xl font-serif text-[#E50914] tracking-tighter"
-                >
+              <motion.div
+                initial={{ opacity: 0, y: 150, rotateX: -15, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1.2, ease: [0.19, 1.0, 0.22, 1.0] }}
+                className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[300px] sm:h-[350px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-[#111111] transition-colors group cursor-default"
+              >
+                <h3 className="text-5xl sm:text-6xl lg:text-7xl font-serif text-[#E50914] tracking-tighter group-hover:scale-105 group-hover:translate-x-2 group-hover:-translate-y-1 transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] origin-left">
                   +6000
-                </motion.h3>
-                <p className="text-sm sm:text-base font-medium">GitHub Commits</p>
-              </div>
+                </h3>
+                <p className="text-sm sm:text-base font-medium transition-colors duration-500 group-hover:text-[#E50914]">GitHub Commits</p>
+              </motion.div>
 
               {/* Card 3 */}
-              <div className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[250px] sm:h-[300px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                <motion.h3
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                  className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter"
-                >
+              <motion.div
+                initial={{ opacity: 0, y: 150, rotateX: -15, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1.2, ease: [0.19, 1.0, 0.22, 1.0] }}
+                className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[250px] sm:h-[300px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-[#111111] transition-colors group cursor-default"
+              >
+                <h3 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter group-hover:scale-105 group-hover:translate-x-2 group-hover:-translate-y-1 transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] origin-left">
                   Global
-                </motion.h3>
-                <p className="text-sm sm:text-base font-medium">Delivering Clients Projects</p>
-              </div>
+                </h3>
+                <p className="text-sm sm:text-base font-medium transition-colors duration-500 group-hover:text-[#E50914]">Delivering Clients Projects</p>
+              </motion.div>
 
               {/* Card 7 */}
-              <div className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[300px] sm:h-[350px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                <motion.h3
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                  className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter leading-none"
-                >
+              <motion.div
+                initial={{ opacity: 0, y: 150, rotateX: -15, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1.2, ease: [0.19, 1.0, 0.22, 1.0] }}
+                className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[300px] sm:h-[350px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-[#111111] transition-colors group cursor-default"
+              >
+                <h3 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter leading-none group-hover:scale-105 group-hover:translate-x-2 group-hover:-translate-y-1 transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] origin-left">
                   React <br /> <span className="text-3xl sm:text-4xl lg:text-5xl"></span>
-                </motion.h3>
-                <p className="text-sm sm:text-base font-medium">Frontend Development</p>
-              </div>
+                </h3>
+                <p className="text-sm sm:text-base font-medium transition-colors duration-500 group-hover:text-[#E50914]">Frontend Development</p>
+              </motion.div>
 
             </div>
 
@@ -311,48 +368,60 @@ export default function Home() {
             <div className="w-full sm:w-1/2 flex flex-col sm:mt-24">
 
               {/* Card 4 */}
-              <div className="border-b border-t sm:border-t-0 border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[300px] sm:h-[350px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                <motion.h3
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                  className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter"
-                >
+              <motion.div
+                initial={{ opacity: 0, y: 150, rotateX: -15, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1.2, ease: [0.19, 1.0, 0.22, 1.0] }}
+                className="border-b border-t sm:border-t-0 border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[300px] sm:h-[350px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-[#111111] transition-colors group cursor-default"
+              >
+                <h3 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter group-hover:scale-105 group-hover:translate-x-2 group-hover:-translate-y-1 transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] origin-left">
                   Wipro
-                </motion.h3>
-                <p className="text-sm sm:text-base font-medium">DevOps & Python Trainee</p>
-              </div>
+                </h3>
+                <p className="text-sm sm:text-base font-medium transition-colors duration-500 group-hover:text-[#E50914]">DevOps & Python Trainee</p>
+              </motion.div>
 
               {/* Card 5 */}
-              <div className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[250px] sm:h-[300px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                <motion.h3
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                  className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter leading-none"
-                >
+              <motion.div
+                initial={{ opacity: 0, y: 150, rotateX: -15, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1.2, ease: [0.19, 1.0, 0.22, 1.0] }}
+                className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[250px] sm:h-[300px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-[#111111] transition-colors group cursor-default"
+              >
+                <h3 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter leading-none group-hover:scale-105 group-hover:translate-x-2 group-hover:-translate-y-1 transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] origin-left">
                   AWS <br /> <span className="text-3xl sm:text-4xl lg:text-5xl">+ K8s</span>
-                </motion.h3>
-                <p className="text-sm sm:text-base font-medium">Core Tech Stack & CI/CD</p>
-              </div>
+                </h3>
+                <p className="text-sm sm:text-base font-medium transition-colors duration-500 group-hover:text-[#E50914]">Core Tech Stack & CI/CD</p>
+              </motion.div>
 
               {/* Card 6 */}
-              <div className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[300px] sm:h-[350px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                <motion.h3
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                  className="text-5xl sm:text-6xl lg:text-7xl font-serif text-[#E50914] tracking-tighter"
-                >
+              <motion.div
+                initial={{ opacity: 0, y: 150, rotateX: -15, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1.2, ease: [0.19, 1.0, 0.22, 1.0] }}
+                className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[300px] sm:h-[350px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-[#111111] transition-colors group cursor-default"
+              >
+                <h3 className="text-5xl sm:text-6xl lg:text-7xl font-serif text-[#E50914] tracking-tighter group-hover:scale-105 group-hover:translate-x-2 group-hover:-translate-y-1 transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] origin-left">
                   2024
-                </motion.h3>
-                <p className="text-sm sm:text-base font-medium">Current Year of Operation</p>
-              </div>
+                </h3>
+                <p className="text-sm sm:text-base font-medium transition-colors duration-500 group-hover:text-[#E50914]">Current Year of Operation</p>
+              </motion.div>
 
               {/* Card 8 */}
-              <div className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[250px] sm:h-[300px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
-                <motion.h3
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                  className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter leading-none"
-                >
+              <motion.div
+                initial={{ opacity: 0, y: 150, rotateX: -15, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1.2, ease: [0.19, 1.0, 0.22, 1.0] }}
+                className="border-b border-black/10 dark:border-white/10 p-6 sm:p-8 flex flex-col justify-between h-[250px] sm:h-[300px] bg-white dark:bg-[#0a0a0a] hover:bg-neutral-50 dark:hover:bg-[#111111] transition-colors group cursor-default"
+              >
+                <h3 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#E50914] tracking-tighter leading-none group-hover:scale-105 group-hover:translate-x-2 group-hover:-translate-y-1 transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] origin-left">
                   API <br /> <span className="text-3xl sm:text-4xl lg:text-5xl"></span>
-                </motion.h3>
-                <p className="text-sm sm:text-base font-medium">Backend Engineering</p>
-              </div>
+                </h3>
+                <p className="text-sm sm:text-base font-medium transition-colors duration-500 group-hover:text-[#E50914]">Backend Engineering</p>
+              </motion.div>
 
             </div>
           </div>
