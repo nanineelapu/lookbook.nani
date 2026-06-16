@@ -103,7 +103,9 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-8 mt-10 md:mt-0">
           {/* Status Indicator */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8, ease: [0.19, 1.0, 0.22, 1.0] }}
             className="flex flex-col justify-center"
           >
             <p className="text-[10px] sm:text-[11px] font-black tracking-[0.2em] uppercase text-neutral-500 dark:text-neutral-400 mb-1">Latest Update</p>
@@ -112,7 +114,9 @@ export default function Home() {
 
           {/* Slogan */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1, ease: [0.19, 1.0, 0.22, 1.0] }}
             className="text-left md:text-right max-w-sm"
           >
             <p className="text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-neutral-600 dark:text-neutral-400">
@@ -123,24 +127,38 @@ export default function Home() {
 
         {/* Main Massive Title */}
         <div className="flex flex-col gap-0 mb-16 md:mb-24 relative z-10">
-          <div className="overflow-hidden">
-            <motion.h1
-              initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[12vw] sm:text-[11vw] md:text-[9.5vw] font-black tracking-tighter leading-[0.85] text-black dark:text-white uppercase"
-            >
-              NANI
-            </motion.h1>
+          <div className="overflow-hidden flex">
+            {"NANI".split("").map((char, i) => (
+              <motion.span
+                key={`nani-${i}`}
+                initial={{ y: "120%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.2, delay: i * 0.08, ease: [0.19, 1.0, 0.22, 1.0] }}
+                className="inline-block text-[12vw] sm:text-[11vw] md:text-[9.5vw] font-black tracking-tighter leading-[0.85] text-black dark:text-white uppercase"
+              >
+                {char}
+              </motion.span>
+            ))}
           </div>
           <div className="overflow-hidden flex flex-col items-start">
-            <motion.h1
-              initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[12vw] sm:text-[11vw] md:text-[9.5vw] font-black tracking-tighter leading-[0.85] text-black dark:text-white uppercase"
-            >
-              REDDY
-            </motion.h1>
+            <div className="flex overflow-hidden">
+              {"REDDY".split("").map((char, i) => (
+                <motion.span
+                  key={`reddy-${i}`}
+                  initial={{ y: "120%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 1.2, delay: (i + 4) * 0.08, ease: [0.19, 1.0, 0.22, 1.0] }}
+                  className="inline-block text-[12vw] sm:text-[11vw] md:text-[9.5vw] font-black tracking-tighter leading-[0.85] text-black dark:text-white uppercase"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </div>
 
             <motion.p
-              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.8, ease: [0.19, 1.0, 0.22, 1.0] }}
               className="text-[10px] sm:text-xs md:text-sm font-medium tracking-tighter text-black dark:text-white mt-3 sm:mt-4 ml-2"
             >
               Devops & Python • Full stack developer @WebCros • AWS
@@ -149,7 +167,9 @@ export default function Home() {
 
           {/* Right Side: Action Buttons */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.2, ease: [0.19, 1.0, 0.22, 1.0] }}
             className="flex flex-row flex-wrap gap-4 shrink-0 lg:absolute lg:right-0 lg:bottom-12"
           >
             {/* Static Let's Connect Button */}

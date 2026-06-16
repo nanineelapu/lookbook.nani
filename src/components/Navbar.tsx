@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, MoreVertical, X, Send, Loader2 } from "lucide-react";
 import gsap from "gsap";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, MeshDistortMaterial, Environment } from "@react-three/drei";
 
 const navItems = [
@@ -15,25 +15,38 @@ const navItems = [
   { name: "Contact", href: "/contact" },
 ];
 
+const SmoothShapes = () => {
+  const groupRef = useRef<any>(null);
+  
+  useFrame((state) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.3;
+      groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      <mesh position={[1.5, -0.5, -2]}>
+        <torusGeometry args={[1, 0.3, 32, 64]} />
+        <meshStandardMaterial color="#E50914" metalness={0.3} roughness={0.2} />
+      </mesh>
+      <mesh position={[-1.5, 1, -1]} scale={0.8}>
+        <icosahedronGeometry args={[1, 0]} />
+        <meshStandardMaterial color="#111111" metalness={0.6} roughness={0.2} />
+      </mesh>
+    </group>
+  );
+};
+
 const Menu3DBackground = () => {
   return (
-    <div className="absolute inset-0 -z-0 overflow-hidden pointer-events-none opacity-40 dark:opacity-20 mix-blend-multiply dark:mix-blend-screen">
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
-        <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
-          <mesh position={[1.5, -0.5, -2]}>
-            <torusKnotGeometry args={[1, 0.3, 128, 16]} />
-            <MeshDistortMaterial color="#E50914" envMapIntensity={1} clearcoat={1} clearcoatRoughness={0} metalness={0.8} roughness={0.2} distort={0.2} speed={2} />
-          </mesh>
-        </Float>
-        <Float speed={1.5} rotationIntensity={2} floatIntensity={1.5}>
-          <mesh position={[-1.5, 1, -1]} scale={1.2}>
-            <sphereGeometry args={[1, 64, 64]} />
-            <MeshDistortMaterial color="#111111" envMapIntensity={1} clearcoat={1} clearcoatRoughness={0} metalness={0.9} roughness={0.1} distort={0.4} speed={3} />
-          </mesh>
-        </Float>
-        <Environment preset="city" />
+    <div className="absolute inset-0 z-[-1] overflow-hidden pointer-events-none opacity-20 dark:opacity-10 mix-blend-multiply dark:mix-blend-screen">
+      <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={[1, 2]}>
+        <ambientLight intensity={2} />
+        <directionalLight position={[10, 10, 5]} intensity={3} color="#ffffff" />
+        <directionalLight position={[-10, -10, -5]} intensity={1.5} color="#E50914" />
+        <SmoothShapes />
       </Canvas>
     </div>
   );
@@ -151,7 +164,7 @@ export default function Navbar() {
                         onMouseEnter={() => setHoveredItem(item.name)}
                         onMouseLeave={() => setHoveredItem(null)}
                         className={`block text-4xl sm:text-5xl font-bold tracking-tighter transition-all duration-300 ${hoveredItem === item.name
-                          ? "text-[#A0A0A0]" // Light grey on hover
+                          ? "text-[#E50914]" // Brand red on hover
                           : "text-[#111111] dark:text-white" // Default black/white
                           }`}
                       >
